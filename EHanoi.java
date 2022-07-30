@@ -1,5 +1,7 @@
 package aiapl.buscaapl.hanoi;
 
+import java.lang.reflect.Array;
+
 public class EHanoi {
 
     int[] p1 = new int[8];
@@ -15,13 +17,25 @@ public class EHanoi {
             p3[i] = 0;
         }
     }
-    /*
-    public void setVol(int a, int b, int c) {
-        this.J3=a;
-        this.J4=b;
-        this.J7=c;
+    
+    public void setP1(int[] p){
+        for(int i=0;i<this.discos;i++){
+            Array.set(this.p1, i, p[i]);
+        }
     }
-    */
+    
+    public void setP2(int[] p){
+        for(int i=0;i<this.discos;i++){
+            Array.set(this.p2, i, p[i]);
+        }
+    }
+    
+    public void setP3(int[] p){
+        for(int i=0;i<this.discos;i++){
+            Array.set(this.p3, i, p[i]);
+        }
+    }
+    
     public int[] getP1() {
         return this.p1;
     }
@@ -51,7 +65,7 @@ public class EHanoi {
             if (pilha[i]>0)
                 return i;
         }
-        return 7;//fugindo do out of bounds
+        return -1;
     }
     
     public boolean vazio(int[] pilha){

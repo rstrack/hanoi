@@ -41,6 +41,8 @@ public class EHanoi {
     }
     
     public int getP1(int k){
+        if (k == -1)
+            return -1;
         return this.p1[k];
     }
     
@@ -49,6 +51,8 @@ public class EHanoi {
     }
     
     public int getP2(int k){
+        if (k == -1)
+            return -1;
         return this.p2[k];
     }
     
@@ -57,6 +61,8 @@ public class EHanoi {
     }
     
     public int getP3(int k){
+        if (k == -1)
+            return -1;
         return this.p3[k];
     }
     

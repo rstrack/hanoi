@@ -31,19 +31,6 @@ public class MainHanoi {
     
     public void run(int k){
        this.uniformCostSearch(k);
-       //this.depthFirstLimitedSearch(k);
-    }
-
-    private void depthFirstLimitedSearch(int k) {
-        EHanoi inicial = new EHanoi(k);
-        Problem<EHanoi, JAction> problem;
-        problem =   new GeneralProblem<>(inicial,
-                                                JFunctions::getActions,
-                                                JFunctions::getResult,
-                                                JFunctions::testGoal);
-	SearchForActions<EHanoi, JAction> search = new DepthLimitedSearch<>(8);
-	Optional<List<JAction>> actions = search.findActions(problem);
-        this.printActions(actions);
     }
     
     private void uniformCostSearch(int k) {
@@ -55,14 +42,14 @@ public class MainHanoi {
                         JFunctions::getResult,
                         JFunctions::testGoal);
         SearchForActions<EHanoi, JAction> search = new UniformCostSearch<>();
-        ///try {
-        ///    SearchAgent<EHanoi, JAction> agent = new SearchAgent<>(problem, search);
+        try {
+            //SearchAgent<EHanoi, JAction> agent = new SearchAgent<>(problem, search);
             Optional<List<JAction>> actions = search.findActions(problem);
             this.printActions(actions);
-        ///} catch (Exception e) {
-        ///    System.out.println(e);
-        ///    System.exit(0);
-        ///}
+        } catch (Exception e) {
+            System.out.println(e);
+            System.exit(0);
+        }
 
     }
   

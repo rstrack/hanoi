@@ -17,48 +17,166 @@ public class JFunctions {
     
     public static List<JAction> getActions(EHanoi state) {
         List<JAction> actions = new ArrayList<>();
-        
-        
-        if(state.getP1(state.getIndexTopo(state.p1))==1){
-            actions.add(new JAction(JAction.D1P1P2));
-            actions.add(new JAction(JAction.D1P1P3));   
+        //primeiro testa se as pilhas estão vazias
+        //método de fugir do out of bounds nos arrays
+        if(state.vazio(state.p1)){
+            if(state.getP2(state.getIndexTopo(state.p2))==2)
+                actions.add(new JAction(JAction.D2P2P1));  
+            if(state.getP3(state.getIndexTopo(state.p3))==2)
+                actions.add(new JAction(JAction.D2P3P1));
+            if(state.getP2(state.getIndexTopo(state.p2))==3)
+                actions.add(new JAction(JAction.D3P2P1));  
+            if(state.getP3(state.getIndexTopo(state.p3))==3)
+                actions.add(new JAction(JAction.D3P3P1));
+            if(state.getP2(state.getIndexTopo(state.p2))==4)
+                actions.add(new JAction(JAction.D4P2P1));  
+            if(state.getP3(state.getIndexTopo(state.p3))==4)
+                actions.add(new JAction(JAction.D4P3P1));
+            if(state.getP2(state.getIndexTopo(state.p2))==5)
+                actions.add(new JAction(JAction.D5P2P1));  
+            if(state.getP3(state.getIndexTopo(state.p3))==5)
+                actions.add(new JAction(JAction.D5P3P1));
+            if(state.getP2(state.getIndexTopo(state.p2))==6)
+                actions.add(new JAction(JAction.D6P2P1));  
+            if(state.getP3(state.getIndexTopo(state.p3))==6)
+                actions.add(new JAction(JAction.D6P3P1));
+            if(state.getP2(state.getIndexTopo(state.p2))==7)
+                actions.add(new JAction(JAction.D7P2P1));  
+            if(state.getP3(state.getIndexTopo(state.p3))==7)
+                actions.add(new JAction(JAction.D7P3P1));
+            
+        }else if(state.vazio(state.p2)){
+            if(state.getP1(state.getIndexTopo(state.p1))==2)
+                actions.add(new JAction(JAction.D2P1P2));  
+            if(state.getP3(state.getIndexTopo(state.p3))==2)
+                actions.add(new JAction(JAction.D2P3P2));
+            if(state.getP1(state.getIndexTopo(state.p1))==3)
+                actions.add(new JAction(JAction.D3P1P2));  
+            if(state.getP3(state.getIndexTopo(state.p3))==3)
+                actions.add(new JAction(JAction.D3P3P2));
+            if(state.getP1(state.getIndexTopo(state.p1))==4)
+                actions.add(new JAction(JAction.D4P1P2));  
+            if(state.getP3(state.getIndexTopo(state.p3))==4)
+                actions.add(new JAction(JAction.D4P3P2));
+            if(state.getP1(state.getIndexTopo(state.p1))==5)
+                actions.add(new JAction(JAction.D5P1P2));  
+            if(state.getP3(state.getIndexTopo(state.p3))==5)
+                actions.add(new JAction(JAction.D5P3P2));
+            if(state.getP1(state.getIndexTopo(state.p1))==6)
+                actions.add(new JAction(JAction.D6P1P2));  
+            if(state.getP3(state.getIndexTopo(state.p3))==6)
+                actions.add(new JAction(JAction.D6P3P2));
+            if(state.getP1(state.getIndexTopo(state.p1))==7)
+                actions.add(new JAction(JAction.D7P1P2));  
+            if(state.getP3(state.getIndexTopo(state.p3))==7)
+                actions.add(new JAction(JAction.D7P3P2));
+            
+        }else if(state.vazio(state.p3)){
+            if(state.getP1(state.getIndexTopo(state.p1))==2)
+                actions.add(new JAction(JAction.D2P1P3));  
+            if(state.getP2(state.getIndexTopo(state.p3))==2)
+                actions.add(new JAction(JAction.D2P2P3));
+            if(state.getP1(state.getIndexTopo(state.p1))==3)
+                actions.add(new JAction(JAction.D3P1P3));  
+            if(state.getP2(state.getIndexTopo(state.p3))==3)
+                actions.add(new JAction(JAction.D3P2P3));
+            if(state.getP1(state.getIndexTopo(state.p1))==4)
+                actions.add(new JAction(JAction.D4P1P3));  
+            if(state.getP2(state.getIndexTopo(state.p3))==4)
+                actions.add(new JAction(JAction.D4P2P3));
+            if(state.getP1(state.getIndexTopo(state.p1))==5)
+                actions.add(new JAction(JAction.D5P1P3));  
+            if(state.getP2(state.getIndexTopo(state.p3))==5)
+                actions.add(new JAction(JAction.D5P2P3));
+            if(state.getP1(state.getIndexTopo(state.p1))==6)
+                actions.add(new JAction(JAction.D6P1P3));  
+            if(state.getP2(state.getIndexTopo(state.p3))==6)
+                actions.add(new JAction(JAction.D6P2P3));
+            if(state.getP1(state.getIndexTopo(state.p1))==7)
+                actions.add(new JAction(JAction.D7P1P3));  
+            if(state.getP2(state.getIndexTopo(state.p3))==7)
+                actions.add(new JAction(JAction.D7P2P3));
+            
+        }else{
+            //mover disco 1
+            if(state.getP1(state.getIndexTopo(state.p1))==1){
+                actions.add(new JAction(JAction.D1P1P2));
+                actions.add(new JAction(JAction.D1P1P3));   
+            }
+            if(state.getP2(state.getIndexTopo(state.p2))==1){
+                actions.add(new JAction(JAction.D1P2P1));
+                actions.add(new JAction(JAction.D1P2P3));
+            }
+            if(state.getP3(state.getIndexTopo(state.p3))==1){
+                actions.add(new JAction(JAction.D1P3P2));
+                actions.add(new JAction(JAction.D1P3P1));
+            }
+            //mover disco 2
+            if(state.getP1(state.getIndexTopo(state.p1))==2 && state.getP2(state.getIndexTopo(state.p2))>1)
+                actions.add(new JAction(JAction.D2P1P2));  
+            if(state.getP1(state.getIndexTopo(state.p1))==2 && state.getP3(state.getIndexTopo(state.p3))>1)
+                actions.add(new JAction(JAction.D2P1P3));
+            if(state.getP2(state.getIndexTopo(state.p2))==2 && state.getP1(state.getIndexTopo(state.p1))>1)
+                actions.add(new JAction(JAction.D2P2P1));
+            if(state.getP2(state.getIndexTopo(state.p2))==2 && state.getP3(state.getIndexTopo(state.p3))>1)
+                actions.add(new JAction(JAction.D2P2P3));
+            if(state.getP3(state.getIndexTopo(state.p3))==2 && state.getP1(state.getIndexTopo(state.p1))>1)
+                actions.add(new JAction(JAction.D2P3P1));
+            if(state.getP3(state.getIndexTopo(state.p3))==2 && state.getP2(state.getIndexTopo(state.p2))>1)
+                actions.add(new JAction(JAction.D2P3P2));
+            //mover disco 3
+            if(state.getP1(state.getIndexTopo(state.p1))==3 && state.getP2(state.getIndexTopo(state.p2))>3)
+                actions.add(new JAction(JAction.D3P1P2));
+            if(state.getP1(state.getIndexTopo(state.p1))==3 && state.getP3(state.getIndexTopo(state.p3))>3)
+                actions.add(new JAction(JAction.D3P1P3));
+            if(state.getP2(state.getIndexTopo(state.p2))==3 && state.getP1(state.getIndexTopo(state.p1))>3)
+                actions.add(new JAction(JAction.D3P2P1));
+            if(state.getP2(state.getIndexTopo(state.p2))==3 && state.getP3(state.getIndexTopo(state.p3))>3)
+                actions.add(new JAction(JAction.D3P2P3));
+            if(state.getP3(state.getIndexTopo(state.p3))==3 && state.getP1(state.getIndexTopo(state.p1))>3)
+                actions.add(new JAction(JAction.D3P3P1));
+            if(state.getP3(state.getIndexTopo(state.p3))==3 && state.getP2(state.getIndexTopo(state.p2))>3)
+                actions.add(new JAction(JAction.D3P3P2));
+            //mover disco 4
+            if(state.getP1(state.getIndexTopo(state.p1))==4 && state.getP2(state.getIndexTopo(state.p2))>4)
+                actions.add(new JAction(JAction.D4P1P2));
+            if(state.getP1(state.getIndexTopo(state.p1))==4 && state.getP3(state.getIndexTopo(state.p3))>4)
+                actions.add(new JAction(JAction.D4P1P3));
+            if(state.getP2(state.getIndexTopo(state.p2))==4 && state.getP1(state.getIndexTopo(state.p1))>4)
+                actions.add(new JAction(JAction.D4P2P1));
+            if(state.getP2(state.getIndexTopo(state.p2))==4 && state.getP3(state.getIndexTopo(state.p3))>4)
+                actions.add(new JAction(JAction.D4P2P3));
+            if(state.getP3(state.getIndexTopo(state.p3))==4 && state.getP1(state.getIndexTopo(state.p1))>4)
+                actions.add(new JAction(JAction.D4P3P1));
+            if(state.getP3(state.getIndexTopo(state.p3))==4 && state.getP2(state.getIndexTopo(state.p2))>4)
+                actions.add(new JAction(JAction.D4P3P2));
+            //mover disco 5
+            if(state.getP1(state.getIndexTopo(state.p1))==5 && state.getP2(state.getIndexTopo(state.p2))>5)
+                actions.add(new JAction(JAction.D5P1P2));
+            if(state.getP1(state.getIndexTopo(state.p1))==5 && state.getP3(state.getIndexTopo(state.p3))>5)
+                actions.add(new JAction(JAction.D5P1P3));
+            if(state.getP2(state.getIndexTopo(state.p2))==5 && state.getP1(state.getIndexTopo(state.p1))>5)
+                actions.add(new JAction(JAction.D5P2P1));
+            if(state.getP2(state.getIndexTopo(state.p2))==5 && state.getP3(state.getIndexTopo(state.p3))>5)
+                actions.add(new JAction(JAction.D5P2P3));
+            if(state.getP3(state.getIndexTopo(state.p3))==5 && state.getP1(state.getIndexTopo(state.p1))>5)
+                actions.add(new JAction(JAction.D5P3P1));
+            if(state.getP3(state.getIndexTopo(state.p3))==5 && state.getP2(state.getIndexTopo(state.p2))>5)
+                actions.add(new JAction(JAction.D5P3P2));
+            //mover disco 6
+            if(state.getP1(state.getIndexTopo(state.p1))==6 && state.getP2(state.getIndexTopo(state.p2))>6)
+                actions.add(new JAction(JAction.D6P1P2));
+            if(state.getP1(state.getIndexTopo(state.p1))==6 && state.getP3(state.getIndexTopo(state.p3))>6)
+                actions.add(new JAction(JAction.D6P1P3));
+            if(state.getP2(state.getIndexTopo(state.p2))==6 && state.getP1(state.getIndexTopo(state.p1))>6)
+                actions.add(new JAction(JAction.D6P2P1));
+            if(state.getP2(state.getIndexTopo(state.p2))==6 && state.getP3(state.getIndexTopo(state.p3))>6)
+                actions.add(new JAction(JAction.D6P2P3));
+            if(state.getP3(state.getIndexTopo(state.p3))==6 && state.getP1(state.getIndexTopo(state.p1))>6)
+                actions.add(new JAction(JAction.D6P3P1));
+            if(state.getP3(state.getIndexTopo(state.p3))==6 && state.getP2(state.getIndexTopo(state.p2))>6)
+                actions.add(new JAction(JAction.D6P3P2));
         }
-        if(state.getP2(state.getIndexTopo(state.p2))==1){
-            actions.add(new JAction(JAction.D1P2P1));
-            actions.add(new JAction(JAction.D1P2P3));
-        }
-        if(state.getP3(state.getIndexTopo(state.p3))==1){
-            actions.add(new JAction(JAction.D1P3P2));
-            actions.add(new JAction(JAction.D1P3P1));
-        }      
-        if(state.getP1(state.getIndexTopo(state.p1))==2 && state.getP2(state.getIndexTopo(state.p2))!=1)
-            actions.add(new JAction(JAction.D2P1P2));  
-        if(state.getP1(state.getIndexTopo(state.p1))==2 && state.getP3(state.getIndexTopo(state.p3))!=1)
-            actions.add(new JAction(JAction.D2P1P3));
-        if(state.getP2(state.getIndexTopo(state.p2))==2 && state.getP1(state.getIndexTopo(state.p1))!=1)
-            actions.add(new JAction(JAction.D2P2P1));
-        if(state.getP2(state.getIndexTopo(state.p2))==2 && state.getP3(state.getIndexTopo(state.p3))!=1)
-            actions.add(new JAction(JAction.D2P2P3));
-        if(state.getP3(state.getIndexTopo(state.p3))==2 && state.getP1(state.getIndexTopo(state.p1))!=1)
-            actions.add(new JAction(JAction.D2P3P1));
-        if(state.getP3(state.getIndexTopo(state.p3))==2 && state.getP2(state.getIndexTopo(state.p2))!=1)
-            actions.add(new JAction(JAction.D2P3P2));
-        
-        if(state.getP1(state.getIndexTopo(state.p1))==3 && state.getP2(state.getIndexTopo(state.p2))>3)
-            actions.add(new JAction(JAction.D3P1P2));
-        if(state.getP1(state.getIndexTopo(state.p1))==3 && state.getP3(state.getIndexTopo(state.p3))>3)
-            actions.add(new JAction(JAction.D3P1P3));
-        if(state.getP2(state.getIndexTopo(state.p2))==3 && state.getP1(state.getIndexTopo(state.p1))>3)
-            actions.add(new JAction(JAction.D3P2P1));
-        if(state.getP2(state.getIndexTopo(state.p2))==3 && state.getP3(state.getIndexTopo(state.p3))>3)
-            actions.add(new JAction(JAction.D3P2P3));
-        if(state.getP3(state.getIndexTopo(state.p3))==3 && state.getP1(state.getIndexTopo(state.p1))>3)
-            actions.add(new JAction(JAction.D3P3P1));
-        if(state.getP3(state.getIndexTopo(state.p3))==3 && state.getP2(state.getIndexTopo(state.p2))>3)
-            actions.add(new JAction(JAction.D3P3P2));
-        
-        
-        
         
         /*
         if ((state.getVol3L()<0) || (state.getVol4L()<0) || (state.getVol7L()<0)) {
@@ -148,6 +266,135 @@ public class JFunctions {
     public static EHanoi getResult(EHanoi e, JAction ac) {
         
         System.out.println("Action Name:" + ac.getName());
+        
+        if (Objects.equals(ac.getName(), JAction.D1P1P2)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 1;
+        }else if(Objects.equals(ac.getName(), JAction.D1P1P3)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 1;
+        }else if(Objects.equals(ac.getName(), JAction.D1P2P1)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 1;
+        }else if(Objects.equals(ac.getName(), JAction.D1P2P3)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 1;
+        }else if(Objects.equals(ac.getName(), JAction.D1P3P1)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 1;
+        }else if(Objects.equals(ac.getName(), JAction.D1P3P2)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 1;
+        }else if (Objects.equals(ac.getName(), JAction.D2P1P2)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 2;
+        }else if(Objects.equals(ac.getName(), JAction.D2P1P3)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 2;
+        }else if(Objects.equals(ac.getName(), JAction.D2P2P1)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 2;
+        }else if(Objects.equals(ac.getName(), JAction.D2P2P3)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 2;
+        }else if(Objects.equals(ac.getName(), JAction.D2P3P1)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 2;
+        }else if(Objects.equals(ac.getName(), JAction.D2P3P2)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 2;
+        }else if (Objects.equals(ac.getName(), JAction.D3P1P2)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 3;
+        }else if(Objects.equals(ac.getName(), JAction.D3P1P3)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 3;
+        }else if(Objects.equals(ac.getName(), JAction.D3P2P1)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 3;
+        }else if(Objects.equals(ac.getName(), JAction.D3P2P3)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 3;
+        }else if(Objects.equals(ac.getName(), JAction.D3P3P1)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 3;
+        }else if(Objects.equals(ac.getName(), JAction.D3P3P2)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 3;
+        }else if (Objects.equals(ac.getName(), JAction.D4P1P2)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 4;
+        }else if(Objects.equals(ac.getName(), JAction.D4P1P3)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 4;
+        }else if(Objects.equals(ac.getName(), JAction.D4P2P1)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 4;
+        }else if(Objects.equals(ac.getName(), JAction.D4P2P3)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 4;
+        }else if(Objects.equals(ac.getName(), JAction.D4P3P1)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 4;
+        }else if(Objects.equals(ac.getName(), JAction.D4P3P2)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 4;
+        }else if (Objects.equals(ac.getName(), JAction.D5P1P2)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 5;
+        }else if(Objects.equals(ac.getName(), JAction.D5P1P3)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 5;
+        }else if(Objects.equals(ac.getName(), JAction.D5P2P1)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 5;
+        }else if(Objects.equals(ac.getName(), JAction.D5P2P3)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 5;
+        }else if(Objects.equals(ac.getName(), JAction.D5P3P1)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 5;
+        }else if(Objects.equals(ac.getName(), JAction.D5P3P2)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 5;
+        }else if (Objects.equals(ac.getName(), JAction.D6P1P2)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 6;
+        }else if(Objects.equals(ac.getName(), JAction.D6P1P3)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 6;
+        }else if(Objects.equals(ac.getName(), JAction.D6P2P1)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 6;
+        }else if(Objects.equals(ac.getName(), JAction.D6P2P3)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 6;
+        }else if(Objects.equals(ac.getName(), JAction.D6P3P1)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 6;
+        }else if(Objects.equals(ac.getName(), JAction.D6P3P2)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 6;
+        }else if (Objects.equals(ac.getName(), JAction.D7P1P2)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 7;
+        }else if(Objects.equals(ac.getName(), JAction.D7P1P3)) {
+            e.p1[e.getIndexTopo(e.p1)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 7;
+        }else if(Objects.equals(ac.getName(), JAction.D7P2P1)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 7;
+        }else if(Objects.equals(ac.getName(), JAction.D7P2P3)) {
+            e.p2[e.getIndexTopo(e.p2)] = 0;
+            e.p3[e.getIndexTopo(e.p3)+1] = 7;
+        }else if(Objects.equals(ac.getName(), JAction.D7P3P1)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p1[e.getIndexTopo(e.p1)+1] = 7;
+        }else if(Objects.equals(ac.getName(), JAction.D7P3P2)) {
+            e.p3[e.getIndexTopo(e.p3)] = 0;
+            e.p2[e.getIndexTopo(e.p2)+1] = 7;
+        }
+        
         
         /*
         if (Objects.equals(ac.getName(), JAction.COMPLETAR_J4)) {

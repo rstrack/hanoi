@@ -2,7 +2,9 @@ package aiapl.buscaapl.hanoi;
 
 public class EHanoi {
 
-    int[] p1, p2, p3;  //pilhas
+    int[] p1 = new int[8];
+    int[] p2 = new int[8];
+    int[] p3 = new int[8];
     int discos;
     
     public EHanoi(int k) { //k = numero de discos
@@ -49,6 +51,10 @@ public class EHanoi {
             if (pilha[i]>0)
                 return i;
         }
-        return -1;
+        return 7;//fugindo do out of bounds
+    }
+    
+    public boolean vazio(int[] pilha){
+        return pilha[0] == 0;
     }
 }

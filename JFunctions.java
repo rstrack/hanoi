@@ -17,8 +17,50 @@ public class JFunctions {
     
     public static List<JAction> getActions(EHanoi state) {
         List<JAction> actions = new ArrayList<>();
-        // encher pote de 4L
         
+        
+        if(state.getP1(state.getIndexTopo(state.p1))==1){
+            actions.add(new JAction(JAction.D1P1P2));
+            actions.add(new JAction(JAction.D1P1P3));   
+        }
+        if(state.getP2(state.getIndexTopo(state.p2))==1){
+            actions.add(new JAction(JAction.D1P2P1));
+            actions.add(new JAction(JAction.D1P2P3));
+        }
+        if(state.getP3(state.getIndexTopo(state.p3))==1){
+            actions.add(new JAction(JAction.D1P3P2));
+            actions.add(new JAction(JAction.D1P3P1));
+        }      
+        if(state.getP1(state.getIndexTopo(state.p1))==2 && state.getP2(state.getIndexTopo(state.p2))!=1)
+            actions.add(new JAction(JAction.D2P1P2));  
+        if(state.getP1(state.getIndexTopo(state.p1))==2 && state.getP3(state.getIndexTopo(state.p3))!=1)
+            actions.add(new JAction(JAction.D2P1P3));
+        if(state.getP2(state.getIndexTopo(state.p2))==2 && state.getP1(state.getIndexTopo(state.p1))!=1)
+            actions.add(new JAction(JAction.D2P2P1));
+        if(state.getP2(state.getIndexTopo(state.p2))==2 && state.getP3(state.getIndexTopo(state.p3))!=1)
+            actions.add(new JAction(JAction.D2P2P3));
+        if(state.getP3(state.getIndexTopo(state.p3))==2 && state.getP1(state.getIndexTopo(state.p1))!=1)
+            actions.add(new JAction(JAction.D2P3P1));
+        if(state.getP3(state.getIndexTopo(state.p3))==2 && state.getP2(state.getIndexTopo(state.p2))!=1)
+            actions.add(new JAction(JAction.D2P3P2));
+        
+        if(state.getP1(state.getIndexTopo(state.p1))==3 && state.getP2(state.getIndexTopo(state.p2))>3)
+            actions.add(new JAction(JAction.D3P1P2));
+        if(state.getP1(state.getIndexTopo(state.p1))==3 && state.getP3(state.getIndexTopo(state.p3))>3)
+            actions.add(new JAction(JAction.D3P1P3));
+        if(state.getP2(state.getIndexTopo(state.p2))==3 && state.getP1(state.getIndexTopo(state.p1))>3)
+            actions.add(new JAction(JAction.D3P2P1));
+        if(state.getP2(state.getIndexTopo(state.p2))==3 && state.getP3(state.getIndexTopo(state.p3))>3)
+            actions.add(new JAction(JAction.D3P2P3));
+        if(state.getP3(state.getIndexTopo(state.p3))==3 && state.getP1(state.getIndexTopo(state.p1))>3)
+            actions.add(new JAction(JAction.D3P3P1));
+        if(state.getP3(state.getIndexTopo(state.p3))==3 && state.getP2(state.getIndexTopo(state.p2))>3)
+            actions.add(new JAction(JAction.D3P3P2));
+        
+        
+        
+        
+        /*
         if ((state.getVol3L()<0) || (state.getVol4L()<0) || (state.getVol7L()<0)) {
             System.out.println("Erro consistência.");
             System.exit(0);
@@ -98,12 +140,16 @@ public class JFunctions {
         //completar 7L com 4L
         if((state.getVol7L()<7)&&(state.getVol4L()>7-state.getVol7L()))
             actions.add(new JAction(JAction.COMPLETAR_J7_COM_J4));
-        
+        */
+
         return actions;
     }
     
-    public static EJarros getResult(EJarros e, JAction ac) {
+    public static EHanoi getResult(EHanoi e, JAction ac) {
+        
         System.out.println("Action Name:" + ac.getName());
+        
+        /*
         if (Objects.equals(ac.getName(), JAction.COMPLETAR_J4)) {
             EJarros child = new EJarros();
             child.setVol(e.getVol3L(),4,e.getVol7L());
@@ -225,17 +271,21 @@ public class JFunctions {
             int vj4 = e.getVol4L()-transf;
             child.setVol(e.getVol3L(), vj4 ,7);
             return child;
-        }    
+        }
+        */
         return null;
     }
 
-    public static boolean testGoal(EJarros e) {
-        GTJarros gt = new GTJarros(3,0,1);
+    public static boolean testGoal(EHanoi e) {
+        GTHanoi gt = new GTHanoi(e.discos);
         return gt.test(e);
     } 
     
-    private static class JStepCostFunctionImpl implements StepCostFunction<EJarros, JAction> {
-
+    
+    //Provavelmente não precisa implementar
+    
+    private static class JStepCostFunctionImpl implements StepCostFunction<EHanoi, JAction> {
+        
         private static double constantCost = 1.0;
 
         private JStepCostFunctionImpl() {
@@ -243,12 +293,15 @@ public class JFunctions {
         }
 
         @Override
-        public double applyAsDouble(EJarros state, JAction action, EJarros statePrimed) {
+        public double applyAsDouble(EHanoi state, JAction action, EHanoi statePrimed) {
             double jcost = 0;
+            /*
             if (Objects.equals(action.getName(), JAction.COMPLETAR_J3)) jcost = 3 - statePrimed.getVol3L();
             if (Objects.equals(action.getName(), JAction.COMPLETAR_J4)) jcost = 4 - statePrimed.getVol4L();
             if (Objects.equals(action.getName(), JAction.COMPLETAR_J7)) jcost = 7 - statePrimed.getVol7L();
+            */
             return jcost;
         }
     }
+    
 }

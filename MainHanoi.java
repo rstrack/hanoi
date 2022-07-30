@@ -1,18 +1,10 @@
 package aiapl.buscaapl.hanoi;
 
-import aima.core.agent.Action;
-import aima.core.agent.impl.DynamicAction;
-import aima.core.environment.map.MoveToAction;
-import aima.core.environment.nqueens.NQueensBoard;
-import aima.core.environment.nqueens.NQueensFunctions;
-import aima.core.environment.nqueens.QueenAction;
 import aima.core.search.agent.SearchAgent;
-import aima.core.search.framework.Node;
 import aima.core.search.framework.SearchForActions;
 import aima.core.search.framework.problem.GeneralProblem;
 import aima.core.search.framework.problem.Problem;
-import aima.core.search.uninformed.DepthLimitedSearch;
-import aima.core.search.framework.problem.StepCostFunction;
+
 import aima.core.search.uninformed.UniformCostSearch;
 
 import java.util.List;
@@ -43,7 +35,7 @@ public class MainHanoi {
                         JFunctions::testGoal);
         SearchForActions<EHanoi, JAction> search = new UniformCostSearch<>();
         try {
-            //SearchAgent<EHanoi, JAction> agent = new SearchAgent<>(problem, search);
+            SearchAgent<EHanoi, JAction> agent = new SearchAgent<>(problem, search);
             Optional<List<JAction>> actions = search.findActions(problem);
             this.printActions(actions);
         } catch (Exception e) {

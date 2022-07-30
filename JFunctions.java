@@ -3,9 +3,6 @@ package aiapl.buscaapl.hanoi;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.core.search.framework.Node;
-import aima.core.search.framework.problem.GeneralProblem;
-import aima.core.search.framework.problem.Problem;
 import aima.core.search.framework.problem.StepCostFunction;
 import java.util.Objects;
 

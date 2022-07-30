@@ -36,8 +36,6 @@ public class MainHanoi {
 
     private void depthFirstLimitedSearch(int k) {
         EHanoi inicial = new EHanoi(k);
-        for(int i =0 ;i<k;i++)
-            System.out.println(inicial.p1[i]);
         Problem<EHanoi, JAction> problem;
         problem =   new GeneralProblem<>(inicial,
                                                 JFunctions::getActions,
@@ -50,8 +48,6 @@ public class MainHanoi {
     
     private void uniformCostSearch(int k) {
         EHanoi inicial = new EHanoi(k);
-        for(int i =0 ;i<k;i++)
-            System.out.println(inicial.getP1(inicial.getIndexTopo(inicial.p1)));
         Problem<EHanoi, JAction> problem;
         problem = new GeneralProblem<>(
                         inicial,
@@ -59,14 +55,14 @@ public class MainHanoi {
                         JFunctions::getResult,
                         JFunctions::testGoal);
         SearchForActions<EHanoi, JAction> search = new UniformCostSearch<>();
-        try {
-            SearchAgent<EHanoi, JAction> agent = new SearchAgent<>(problem, search);
+        ///try {
+        ///    SearchAgent<EHanoi, JAction> agent = new SearchAgent<>(problem, search);
             Optional<List<JAction>> actions = search.findActions(problem);
             this.printActions(actions);
-        } catch (Exception e) {
-            System.out.println(e);
-            System.exit(0);
-        }
+        ///} catch (Exception e) {
+        ///    System.out.println(e);
+        ///    System.exit(0);
+        ///}
 
     }
   

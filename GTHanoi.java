@@ -1,6 +1,7 @@
 package aiapl.buscaapl.hanoi;
 
 import aima.core.search.framework.problem.GoalTest;
+import java.util.Arrays;
 
 public class GTHanoi implements GoalTest {
     
@@ -18,19 +19,13 @@ public class GTHanoi implements GoalTest {
     
     public boolean test(Object state) {
         EHanoi hanoi = (EHanoi) state;
-        for(int i=0;i<hanoi.discos;i++){
-            if(hanoi.getP1(i) != this.gtp1[i]){
-                return false;
-            }if(hanoi.getP2(i) != this.gtp2[i]){
-                return false;
-            }if(hanoi.getP3(i) != this.gtp3[i]){
-                return false;
+        if(Arrays.equals(this.gtp1, hanoi.getP1())){
+            if(Arrays.equals(this.gtp2, hanoi.getP2())){
+                if(Arrays.equals(this.gtp3, hanoi.getP3())){
+                    return true;
+                }
             }
         }
-        return true;
-    }
-
-    public int[][] getObjetive() {
-        return new int[][] {{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{7,6,5,4,3,2,1}};
+        return false;
     }
 }

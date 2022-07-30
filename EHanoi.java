@@ -4,9 +4,9 @@ import java.lang.reflect.Array;
 
 public class EHanoi {
 
-    int[] p1 = new int[8];
-    int[] p2 = new int[8];
-    int[] p3 = new int[8];
+    int[] p1 = new int[7];
+    int[] p2 = new int[7];
+    int[] p3 = new int[7];
     int discos;
     
     public EHanoi(int k) { //k = numero de discos

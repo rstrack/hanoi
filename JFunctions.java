@@ -10,7 +10,8 @@ import aima.core.search.framework.problem.StepCostFunction;
 import java.util.Objects;
 
 public class JFunctions {
-
+    
+    public int aux = 0;
     public static StepCostFunction<EHanoi, JAction> getJCostFunction() {
         return new JStepCostFunctionImpl();        
     }
@@ -19,6 +20,24 @@ public class JFunctions {
         List<JAction> actions = new ArrayList<>();
         //primeiro testa se as pilhas estão vazias
         //método de fugir do out of bounds nos arrays
+        /*
+        if (state.vazio(state.p2) && state.vazio(state.p3)){
+            actions.add(new JAction(JAction.D1P1P3));
+        }else if(state.vazio(state.p1) && state.getP2(state.getIndexTopo(state.p2))==1){
+            actions.add(new JAction(JAction.D1P2P1));
+        }else if(state.vazio(state.p2) && state.getP1(state.getIndexTopo(state.p1))==1){
+            actions.add(new JAction(JAction.D1P1P3));
+        }else if(state.getP1(state.getIndexTopo(state.p1))==2 && state.getP3(state.getIndexTopo(state.p3))==1)
+            actions.add(new JAction(JAction.D2P1P2));
+        else if(state.getP1(state.getIndexTopo(state.p1))==3 && state.getP2(state.getIndexTopo(state.p2))==2){
+            actions.add(new JAction(JAction.D1P3P2));
+        }else if(state.getP1(state.getIndexTopo(state.p1))==3 && state.getP2(state.getIndexTopo(state.p2))==1){
+            actions.add(new JAction(JAction.D3P1P3));
+        }else if(state.getP2(state.getIndexTopo(state.p2))==2 && state.getP3(state.getIndexTopo(state.p3))==3){
+            actions.add(new JAction(JAction.D2P2P3));
+        }
+        */
+        
         if(state.vazio(state.p1) && state.vazio(state.p2)){
             actions.add(new JAction(JAction.D1P3P1));
             actions.add(new JAction(JAction.D1P3P2)); 
@@ -183,7 +202,7 @@ public class JFunctions {
             if(state.getP3(state.getIndexTopo(state.p3))==6 && state.getP2(state.getIndexTopo(state.p2))>6)
                 actions.add(new JAction(JAction.D6P3P2));
         }
-
+        
         return actions;
     }
     

@@ -42,7 +42,6 @@ public class MainHanoi {
             System.out.println(e);
             System.exit(0);
         }
-
     }
   
     private void printActions(Optional<List<JAction>> actions) {

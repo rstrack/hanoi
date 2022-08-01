@@ -350,6 +350,14 @@ public class JFunctions {
             
             //induzindo movimentos úteis para resolver mais rapidademente o problema
             
+            if (action.getName().substring(6,8)=="d1") jcost = 14;
+            if (action.getName().substring(6,8)=="d2") jcost = 12;
+            if (action.getName().substring(6,8)=="d3") jcost = 10;
+            if (action.getName().substring(6,8)=="d4") jcost = 8;
+            if (action.getName().substring(6,8)=="d5") jcost = 6;
+            if (action.getName().substring(6,8)=="d6") jcost = 4;
+            if (action.getName().substring(6,8)=="d7") jcost = 2;
+            
             if(state.getP3(state.getIndexTopo(state.p3)) == state.discos &&
                     statePrimed.getP3(statePrimed.getIndexTopo(statePrimed.p3))==state.discos-1) 
                 jcost = 1;

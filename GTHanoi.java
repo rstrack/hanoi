@@ -21,22 +21,10 @@ public class GTHanoi implements GoalTest {
     
     public boolean test(Object state) {
         EHanoi hanoi = (EHanoi) state;
-        /*
-        System.out.println(this.gtp1[0]);
-        System.out.println(this.gtp1[1]);
-        System.out.println(this.gtp1[2]);
-        System.out.println(hanoi.getP1(0));
-        System.out.println(hanoi.getP1(1));
-        System.out.println(hanoi.getP1(2));
-        System.out.println("\n");
-        */
-        if(Arrays.equals(gtp1, hanoi.getP1())){
-            if(Arrays.equals(gtp2, hanoi.getP2())){
-                if(Arrays.equals(gtp3, hanoi.getP3())){
+        if(Arrays.equals(gtp1, hanoi.getP1()))
+            if(Arrays.equals(gtp2, hanoi.getP2()))
+                if(Arrays.equals(gtp3, hanoi.getP3()))
                     return true;
-                }
-            }
-        }
         return false;
     }
     

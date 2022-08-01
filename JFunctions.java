@@ -149,7 +149,7 @@ public class JFunctions {
     
     public static EHanoi getResult(EHanoi e, JAction ac) {
         
-        //System.out.println("Action Name:" + ac.getName());
+        System.out.println("Action Name:" + ac.getName());
         
         EHanoi child = new EHanoi(e.discos);
         child.setP1(e.p1);
@@ -341,21 +341,31 @@ public class JFunctions {
     //Provavelmente não precisa implementar
     
     private static class JStepCostFunctionImpl implements StepCostFunction<EHanoi, JAction> {
-        
-        private static double constantCost = 1.0;
 
-        private JStepCostFunctionImpl() {
-
-        }
+        private JStepCostFunctionImpl() {}
 
         @Override
         public double applyAsDouble(EHanoi state, JAction action, EHanoi statePrimed) {
-            double jcost = 1;
-            /*
-            if (Objects.equals(action.getName(), JAction.COMPLETAR_J3)) jcost = 3 - statePrimed.getVol3L();
-            if (Objects.equals(action.getName(), JAction.COMPLETAR_J4)) jcost = 4 - statePrimed.getVol4L();
-            if (Objects.equals(action.getName(), JAction.COMPLETAR_J7)) jcost = 7 - statePrimed.getVol7L();
-            */
+            double jcost = 5;
+            
+            //induzindo movimentos úteis para resolver mais rapidademente o problema
+            
+            if(state.getP3(state.getIndexTopo(state.p3)) == state.discos &&
+                    statePrimed.getP3(statePrimed.getIndexTopo(statePrimed.p3))==state.discos-1) 
+                jcost = 1;
+                        
+            if (Objects.equals(action.getName(), JAction.D3P1P3) && state.discos==3) jcost = 1;
+            if (Objects.equals(action.getName(), JAction.D4P1P3) && state.discos==4) jcost = 1;
+            if (Objects.equals(action.getName(), JAction.D5P1P3) && state.discos==5) jcost = 1;
+            if (Objects.equals(action.getName(), JAction.D6P1P3) && state.discos==6) jcost = 1;
+            if (Objects.equals(action.getName(), JAction.D7P1P3) && state.discos==7) jcost = 1;
+            
+            if (Objects.equals(action.getName(), JAction.D3P1P2) && state.discos==3) jcost = 10;
+            if (Objects.equals(action.getName(), JAction.D4P1P2) && state.discos==4) jcost = 10;
+            if (Objects.equals(action.getName(), JAction.D5P1P2) && state.discos==5) jcost = 10;
+            if (Objects.equals(action.getName(), JAction.D6P1P2) && state.discos==6) jcost = 10;
+            if (Objects.equals(action.getName(), JAction.D7P1P2) && state.discos==7) jcost = 10;
+            
             return jcost;
         }
     }

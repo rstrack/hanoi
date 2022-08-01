@@ -4,16 +4,16 @@ import java.lang.reflect.Array;
 
 public class EHanoi {
 
-    public int p1[];
-    public int p2[];
-    public int p3[];
-    public int discos;
+    int p1[];
+    int p2[];
+    int p3[];
+    int discos;
     
     public EHanoi(int k) { //k = numero de discos
         this.discos = k;
-        p1 = new int[k];
-        p2 = new int[k];
-        p3 = new int[k];
+        this.p1 = new int[k];
+        this.p2 = new int[k];
+        this.p3 = new int[k];
         for(int i=0;i<k;i++){
             this.p1[i] = k-i;
             this.p2[i] = 0;

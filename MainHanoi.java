@@ -32,12 +32,13 @@ public class MainHanoi {
                         inicial,
                         JFunctions::getActions,
                         JFunctions::getResult,
-                        JFunctions::testGoal);
+                        JFunctions::testGoal,
+                        JFunctions.getJCostFunction());
         SearchForActions<EHanoi, JAction> search = new UniformCostSearch<>();
         try {
-            SearchAgent<EHanoi, JAction> agent = new SearchAgent<>(problem, search);
-            Optional<List<JAction>> actions = search.findActions(problem);
-            this.printActions(actions);
+        SearchAgent<EHanoi, JAction> agent = new SearchAgent<>(problem, search);
+        Optional<List<JAction>> actions = search.findActions(problem);
+        this.printActions(actions);
         } catch (Exception e) {
             System.out.println(e);
             System.exit(0);

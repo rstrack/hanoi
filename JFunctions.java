@@ -8,7 +8,6 @@ import java.util.Objects;
 
 public class JFunctions {
     
-    public int aux = 0;
     public static StepCostFunction<EHanoi, JAction> getJCostFunction() {
         return new JStepCostFunctionImpl();        
     }
@@ -67,6 +66,7 @@ public class JFunctions {
         if(state.getP3(state.getIndexTopo(state.p3))==3 && (state.getP2(state.getIndexTopo(state.p2)) == -1 || state.getP2(state.getIndexTopo(state.p2))>3)){
             actions.add(new JAction(JAction.D3P3P2));
         }
+        
         //disco 4
         if(state.getP1(state.getIndexTopo(state.p1))==4 && (state.getP2(state.getIndexTopo(state.p2)) == -1 || state.getP2(state.getIndexTopo(state.p2))>4)){
             actions.add(new JAction(JAction.D4P1P2));
@@ -143,183 +143,190 @@ public class JFunctions {
         if(state.getP3(state.getIndexTopo(state.p3))==7 && state.getP2(state.getIndexTopo(state.p2)) == -1){
             actions.add(new JAction(JAction.D7P3P2));
         }
+        
         return actions;
     }
     
     public static EHanoi getResult(EHanoi e, JAction ac) {
         
         //System.out.println("Action Name:" + ac.getName());
+        
         EHanoi child = new EHanoi(e.discos);
-            child.setP1(e.p1);
-            child.setP2(e.p2);
-            child.setP3(e.p3);
+        child.setP1(e.p1);
+        child.setP2(e.p2);
+        child.setP3(e.p3);
+        /*
+        System.out.println("\nP1: "+child.getP1(child.getIndexTopo(child.getP1())));
+        System.out.println("P2: "+child.getP2(child.getIndexTopo(child.getP2())));
+        System.out.println("P3: "+child.getP3(child.getIndexTopo(child.getP3())));
+        */
         if (Objects.equals(ac.getName(), JAction.D1P1P2)) {
-            child.p1[e.getIndexTopo(child.p1)] = 0;
-            child.p2[e.getIndexTopo(child.p2)+1] = 1;
+            child.p1[child.getIndexTopo(child.p1)] = 0;
+            child.p2[child.getIndexTopo(child.p2)+1] = 1;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D1P1P3)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 1;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 1;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D1P2P1)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 1;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 1;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D1P2P3)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 1;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 1;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D1P3P1)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 1;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 1;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D1P3P2)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 1;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 1;
             return child;
         }else if (Objects.equals(ac.getName(), JAction.D2P1P2)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 2;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 2;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D2P1P3)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 2;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 2;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D2P2P1)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 2;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 2;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D2P2P3)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 2;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 2;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D2P3P1)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 2;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 2;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D2P3P2)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 2;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 2;
             return child;
         }else if (Objects.equals(ac.getName(), JAction.D3P1P2)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 3;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 3;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D3P1P3)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 3;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 3;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D3P2P1)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 3;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 3;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D3P2P3)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 3;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 3;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D3P3P1)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 3;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 3;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D3P3P2)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 3;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 3;
             return child;
         }else if (Objects.equals(ac.getName(), JAction.D4P1P2)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 4;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 4;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D4P1P3)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 4;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 4;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D4P2P1)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 4;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 4;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D4P2P3)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 4;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 4;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D4P3P1)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 4;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 4;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D4P3P2)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 4;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 4;
             return child;
         }else if (Objects.equals(ac.getName(), JAction.D5P1P2)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 5;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 5;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D5P1P3)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 5;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 5;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D5P2P1)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 5;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 5;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D5P2P3)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 5;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 5;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D5P3P1)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 5;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 5;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D5P3P2)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 5;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 5;
             return child;
         }else if (Objects.equals(ac.getName(), JAction.D6P1P2)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 6;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 6;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D6P1P3)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 6;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 6;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D6P2P1)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 6;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 6;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D6P2P3)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 6;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 6;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D6P3P1)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 6;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 6;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D6P3P2)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 6;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 6;
             return child;
         }else if (Objects.equals(ac.getName(), JAction.D7P1P2)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 7;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 7;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D7P1P3)) {
-            child.p1[e.getIndexTopo(e.p1)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 7;
+            child.p1[child.getIndexTopo(e.p1)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 7;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D7P2P1)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 7;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 7;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D7P2P3)) {
-            child.p2[e.getIndexTopo(e.p2)] = 0;
-            child.p3[e.getIndexTopo(e.p3)+1] = 7;
+            child.p2[child.getIndexTopo(e.p2)] = 0;
+            child.p3[child.getIndexTopo(e.p3)+1] = 7;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D7P3P1)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p1[e.getIndexTopo(e.p1)+1] = 7;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p1[child.getIndexTopo(e.p1)+1] = 7;
             return child;
         }else if(Objects.equals(ac.getName(), JAction.D7P3P2)) {
-            child.p3[e.getIndexTopo(e.p3)] = 0;
-            child.p2[e.getIndexTopo(e.p2)+1] = 7;
+            child.p3[child.getIndexTopo(e.p3)] = 0;
+            child.p2[child.getIndexTopo(e.p2)+1] = 7;
             return child;
         }
         return null;
@@ -343,7 +350,7 @@ public class JFunctions {
 
         @Override
         public double applyAsDouble(EHanoi state, JAction action, EHanoi statePrimed) {
-            double jcost = 0;
+            double jcost = 1;
             /*
             if (Objects.equals(action.getName(), JAction.COMPLETAR_J3)) jcost = 3 - statePrimed.getVol3L();
             if (Objects.equals(action.getName(), JAction.COMPLETAR_J4)) jcost = 4 - statePrimed.getVol4L();

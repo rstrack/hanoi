@@ -346,10 +346,11 @@ public class JFunctions {
 
         @Override
         public double applyAsDouble(EHanoi state, JAction action, EHanoi statePrimed) {
-            double jcost = 5;
+            double jcost = 14;
             
             //induzindo movimentos úteis para resolver mais rapidademente o problema
-            
+            //movimentos de discos maiores tem menor custo, para evitar loop de movimento
+            //dos discos menores
             if (action.getName().substring(6,8)=="d1") jcost = 14;
             if (action.getName().substring(6,8)=="d2") jcost = 12;
             if (action.getName().substring(6,8)=="d3") jcost = 10;
@@ -368,11 +369,11 @@ public class JFunctions {
             if (Objects.equals(action.getName(), JAction.D6P1P3) && state.discos==6) jcost = 1;
             if (Objects.equals(action.getName(), JAction.D7P1P3) && state.discos==7) jcost = 1;
             
-            if (Objects.equals(action.getName(), JAction.D3P1P2) && state.discos==3) jcost = 10;
-            if (Objects.equals(action.getName(), JAction.D4P1P2) && state.discos==4) jcost = 10;
-            if (Objects.equals(action.getName(), JAction.D5P1P2) && state.discos==5) jcost = 10;
-            if (Objects.equals(action.getName(), JAction.D6P1P2) && state.discos==6) jcost = 10;
-            if (Objects.equals(action.getName(), JAction.D7P1P2) && state.discos==7) jcost = 10;
+            if (Objects.equals(action.getName(), JAction.D3P1P2) && state.discos==3) jcost = 14;
+            if (Objects.equals(action.getName(), JAction.D4P1P2) && state.discos==4) jcost = 14;
+            if (Objects.equals(action.getName(), JAction.D5P1P2) && state.discos==5) jcost = 14;
+            if (Objects.equals(action.getName(), JAction.D6P1P2) && state.discos==6) jcost = 14;
+            if (Objects.equals(action.getName(), JAction.D7P1P2) && state.discos==7) jcost = 14;
             
             return jcost;
         }

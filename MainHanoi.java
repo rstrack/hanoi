@@ -52,8 +52,9 @@ public class MainHanoi {
         problem =   new GeneralProblem<>(inicial,
                                                 JFunctions::getActions,
                                                 JFunctions::getResult,
-                                                JFunctions::testGoal);
-	SearchForActions<EHanoi, JAction> search = new DepthLimitedSearch<>(16); //dá erro quando a profundidade é muito pequena, pois não acha o resultado até ela
+                                                JFunctions::testGoal,
+                                                JFunctions.getJCostFunction());
+	SearchForActions<EHanoi, JAction> search = new DepthLimitedSearch<>(2^k-1); //dá erro quando a profundidade é muito pequena, pois não acha o resultado até ela
 	Optional<List<JAction>> actions = search.findActions(problem);
         this.printActions(actions);
     }
